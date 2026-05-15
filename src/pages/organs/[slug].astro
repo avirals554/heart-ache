@@ -1,0 +1,159 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getOrgan, getAllSlugs } from '../../data/organs.js';
+
+export function getStaticPaths() {
+    return getAllSlugs().map(slug => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const organ = getOrgan(slug);
+---
+
+<MainLayout title={organ.name} current={slug}>
+    <div class="organ-header">
+        <div class="breadcrumb">
+            <a href="/">Home</a> / {organ.name}
+        </div>
+        <h1>{organ.emoji} {organ.name}</h1>
+        <p class="overview">{organ.overview}</p>
+    </div>
+
+    <div class="organ-body">
+        <div class="viewer-area">
+            {organ.sketchfabId ? (
+                <iframe
+                    src=""
+                    id="api-frame"
+                    allow="autoplay; fullscreen; xr-spatial-tracking"
+                    allowfullscreen
+                />
+            ) : (
+                <div class="viewer-placeholder">
+                    <div class="big-emoji">{organ.emoji}</div>
+                    <p>3D model coming soon</p>
+                </div>
+            )}
+        </div>
+
+        <div class="parts-panel">
+            <div class="panel-header">
+                Anatomy — {organ.parts.length} structures
+            </div>
+            {organ.parts.map((part, i) => (
+                <div class="part-item">
+                    <button class="part-toggle" data-index={i}>
+                        <span class="part-name">{part.name}</span>
+                        <span class="part-count">
+                            {part.diseases.length} {part.diseases.length === 1 ? 'disease' : 'diseases'}
+                        </span>
+                    </button>
+                    <div class="part-detail" id={`part-${i}`}>
+                        <div class="part-detail-inner">
+                            <p class="part-desc">{part.description}</p>
+                            {part.diseases.map((d) => (
+                                <div class="disease">
+                                    <div class="disease-top">
+                                        <span class="disease-name">{d.name}</span>
+                                        <span class={`badge ${d.severity}`}>{d.severity}</span>
+                                    </div>
+                                    <p class="disease-desc">{d.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <!-- Deep content below the viewer -->
+    <div class="deep-content">
+
+        {organ.howItWorks && (
+            <section class="content-section">
+                <div class="section-tag">How it works</div>
+                <h2>Understanding the {organ.name}</h2>
+                <div class="prose-grid">
+                    {organ.howItWorks.map((item, i) => (
+                        <div class="prose-card" style={`animation-delay: ${i * 0.1}s`}>
+                            <span class="prose-number">{String(i + 1).padStart(2, '0')}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.text}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        {organ.facts && (
+            <section class="content-section facts-section">
+                <div class="section-tag">Did you know</div>
+                <h2>Facts about the {organ.name}</h2>
+                <div class="facts-grid">
+                    {organ.facts.map((fact, i) => (
+                        <div class="fact-card">
+                            <span class="fact-icon">✦</span>
+                            <p>{fact}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        {organ.warningSigns && (
+            <section class="content-section warning-section">
+                <div class="section-tag warning-tag">Warning signs</div>
+                <h2>When to see a doctor</h2>
+                <div class="warning-list">
+                    {organ.warningSigns.map((w) => (
+                        <div class="warning-card">
+                            <div class="warning-indicator"></div>
+                            <div>
+                                <h4>{w.sign}</h4>
+                                <p>{w.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        <section class="content-section">
+            <div class="section-tag">Explore more</div>
+            <h2>Continue learning</h2>
+            <div class="links-grid">
+                <a class="link-card" href="/">
+                    <span>←</span> Back to all organs
+                </a>
+            </div>
+        </section>
+    </div>
+
+    {organ.sketchfabId && (
+        <script define:vars={{ modelId: organ.sketchfabId }}>
+            const s = document.createElement('script');
+            s.src = 'https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js';
+            s.onload = () => {
+                const iframe = document.getElementById('api-frame');
+                const client = new Sketchfab('1.12.1', iframe);
+                client.init(modelId, {
+                    success: function(api) { api.start(); },
+                    error: function() { console.log('Model error'); }
+                });
+            };
+            document.head.appendChild(s);
+        </script>
+    )}
+
+    <script>
+        document.querySelectorAll('.part-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const detail = document.getElementById(`part-${btn.dataset.index}`);
+                const wasOpen = detail.classList.contains('open');
+                document.querySelectorAll('.part-detail').forEach(d => d.classList.remove('open'));
+                if (!wasOpen) detail.classList.add('open');
+            });
+        });
+    </script>
+</MainLayout>

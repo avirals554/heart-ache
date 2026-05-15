@@ -262,3 +262,358 @@ body {
     font-size: 12px;
     font-weight: 300;
 }
+/* Organ page */
+.organ-header {
+    padding: 30px 40px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.breadcrumb a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--text-dim);
+}
+
+.organ-header h1 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.overview {
+    color: var(--text-dim);
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 640px;
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+.organ-body {
+    display: flex;
+    height: calc(100vh - 130px);
+}
+
+.viewer-area {
+    flex: 1;
+    background: var(--bg-card);
+}
+
+.viewer-area iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.viewer-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-muted);
+    font-size: 13px;
+    gap: 10px;
+}
+
+.big-emoji {
+    font-size: 56px;
+    opacity: 0.3;
+}
+
+.parts-panel {
+    width: 360px;
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+}
+
+.panel-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+}
+
+.part-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.part-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text);
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background 0.15s;
+    text-align: left;
+}
+
+.part-toggle:hover {
+    background: var(--bg-card);
+}
+
+.part-name {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.part-count {
+    font-size: 10px;
+    color: var(--text-muted);
+    background: var(--bg-raised);
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
+.part-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.part-detail.open {
+    max-height: 800px;
+}
+
+.part-detail-inner {
+    padding: 0 18px 16px;
+}
+
+.part-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 12px;
+    font-weight: 300;
+}
+
+.disease {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.disease-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.disease-name {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge {
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.badge.mild {
+    background: #122e1c;
+    color: var(--green, #34c77b);
+}
+.badge.moderate {
+    background: #2e2510;
+    color: var(--amber, #e8a832);
+}
+.badge.severe {
+    background: #2e1216;
+    color: var(--red);
+}
+
+.disease-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-weight: 300;
+}
+/* Deep content */
+.deep-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+}
+
+.content-section {
+    margin-bottom: 64px;
+}
+
+.section-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.warning-tag {
+    color: var(--red);
+}
+
+.content-section h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 24px;
+}
+
+/* How it works */
+.prose-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.prose-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    position: relative;
+}
+
+.prose-number {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--bg-raised);
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    line-height: 1;
+}
+
+.prose-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.prose-card p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    font-weight: 300;
+}
+
+/* Facts */
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.fact-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.fact-icon {
+    color: var(--red);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.fact-card p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* Warning signs */
+.warning-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.warning-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.warning-indicator {
+    width: 8px;
+    height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.warning-card h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.warning-card p {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 300;
+}
+
+/* Links */
+.links-grid {
+    display: flex;
+    gap: 12px;
+}
+
+.link-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 24px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.link-card:hover {
+    background: var(--bg-raised);
+    color: var(--text);
+}
