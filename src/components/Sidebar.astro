@@ -10,7 +10,7 @@ const organs = getOrganList();
         <p>3D Medical Atlas</p>
     </div>
     <div class="sidebar-nav">
-        <a class:list={["sidebar-link", { active: !current }]} href="/">
+        <a class:list={["sidebar-link", { active: !current }]} href={import.meta.env.BASE_URL}>
             <span class="link-emoji">⬡</span> Home
         </a>
         <div class="sidebar-label">Organs</div>
@@ -21,7 +21,7 @@ const organs = getOrganList();
                         "sidebar-link",
                         { active: current === o.slug },
                     ]}
-                    href={`/organs/${o.slug}`}
+                    href={`${import.meta.env.BASE_URL}/organs/${o.slug}`.replace(/\/+/g, "/")}
                 >
                     <span class="link-emoji">{o.emoji}</span> {o.name}
                 </a>

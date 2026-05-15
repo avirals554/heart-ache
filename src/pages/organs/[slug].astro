@@ -13,7 +13,7 @@ const organ = getOrgan(slug);
 <MainLayout title={organ.name} current={slug}>
     <div class="organ-header">
         <div class="breadcrumb">
-            <a href="/">Home</a> / {organ.name}
+            <a href={import.meta.env.BASE_URL}>Home</a> / {organ.name}
         </div>
         <h1>{organ.emoji} {organ.name}</h1>
         <p class="overview">{organ.overview}</p>
@@ -123,7 +123,7 @@ const organ = getOrgan(slug);
             <div class="section-tag">Explore more</div>
             <h2>Continue learning</h2>
             <div class="links-grid">
-                <a class="link-card" href="/">
+                <a class="link-card" href={import.meta.env.BASE_URL}>
                     <span>←</span> Back to all organs
                 </a>
             </div>

@@ -44,7 +44,7 @@ const organs = getOrganList();
             organs.map((o) => (
                 <a
                     class="organ-card"
-                    href={`/organs/${o.slug}`}
+                    href={`${import.meta.env.BASE_URL}/organs/${o.slug}`.replace(/\/+/g, "/")}
                     style={`--card-accent: ${o.color}`}
                     data-name={o.name.toLowerCase()}
                     data-tagline={o.tagline.toLowerCase()}
