@@ -1,0 +1,31 @@
+---
+import { getOrganList } from "../data/organs.js";
+const { current } = Astro.props;
+const organs = getOrganList();
+---
+
+<nav class="sidebar">
+    <div class="sidebar-brand">
+        <h1>Body <em>Bizarre</em></h1>
+        <p>3D Medical Atlas</p>
+    </div>
+    <div class="sidebar-nav">
+        <a class:list={["sidebar-link", { active: !current }]} href="/">
+            <span class="link-emoji">⬡</span> Home
+        </a>
+        <div class="sidebar-label">Organs</div>
+        {
+            organs.map((o) => (
+                <a
+                    class:list={[
+                        "sidebar-link",
+                        { active: current === o.slug },
+                    ]}
+                    href={`/organs/${o.slug}`}
+                >
+                    <span class="link-emoji">{o.emoji}</span> {o.name}
+                </a>
+            ))
+        }
+    </div>
+</nav>

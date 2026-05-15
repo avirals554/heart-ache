@@ -1,0 +1,81 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { getOrganList } from "../data/organs.js";
+const organs = getOrganList();
+---
+
+<MainLayout title="Home">
+    <div class="home-hero">
+        <h1>The human body,<br /><em>dissected.</em></h1>
+        <p class="subtitle">
+            Explore organs in interactive 3D. Click a part, see what it does,
+            learn what happens when it breaks.
+        </p>
+    </div>
+
+    <div class="search-wrapper">
+        <div class="search-box">
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+            >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+                type="text"
+                id="search"
+                placeholder="Search organs, parts, diseases..."
+                autocomplete="off"
+            />
+            <kbd>/</kbd>
+        </div>
+    </div>
+
+    <div class="section-label">Explore</div>
+
+    <div class="organ-grid" id="organ-grid">
+        {
+            organs.map((o) => (
+                <a
+                    class="organ-card"
+                    href={`/organs/${o.slug}`}
+                    style={`--card-accent: ${o.color}`}
+                    data-name={o.name.toLowerCase()}
+                    data-tagline={o.tagline.toLowerCase()}
+                >
+                    <div class="card-emoji">{o.emoji}</div>
+                    <h3>{o.name}</h3>
+                    <p class="card-tagline">{o.tagline}</p>
+                </a>
+            ))
+        }
+    </div>
+
+    <script>
+        const search = document.getElementById("search");
+        const cards = document.querySelectorAll(".organ-card");
+
+        search.addEventListener("input", (e) => {
+            const q = e.target.value.toLowerCase();
+            cards.forEach((card) => {
+                const match =
+                    card.dataset.name.includes(q) ||
+                    card.dataset.tagline.includes(q);
+                card.style.display = match ? "" : "none";
+            });
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "/" && document.activeElement !== search) {
+                e.preventDefault();
+                search.focus();
+            }
+        });
+    </script>
+</MainLayout>

@@ -1,0 +1,20 @@
+---
+import Sidebar from "../components/Sidebar.astro";
+import "../styles/global.css";
+const { title, current } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title} — Body Bizarre</title>
+    </head>
+    <body>
+        <Sidebar current={current} />
+        <main class="main">
+            <slot />
+        </main>
+    </body>
+</html>

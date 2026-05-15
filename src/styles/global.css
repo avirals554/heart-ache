@@ -1,0 +1,264 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #06090f;
+    --bg-card: #0c1017;
+    --bg-raised: #111620;
+    --bg-hover: #161c28;
+    --border: #1c2333;
+    --text: #e4e8f1;
+    --text-dim: #8a92a6;
+    --text-muted: #515b72;
+    --red: #e8485c;
+    --font-display: "Instrument Serif", Georgia, serif;
+    --font-body: "Outfit", sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.sidebar-brand {
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.sidebar-brand h1 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.sidebar-brand h1 em {
+    color: var(--red);
+    font-style: italic;
+}
+
+.sidebar-brand p {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 12px 0;
+}
+
+.sidebar-label {
+    padding: 16px 20px 6px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 20px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+}
+
+.sidebar-link:hover {
+    color: var(--text);
+    background: var(--bg-hover);
+}
+
+.sidebar-link.active {
+    color: var(--text);
+    background: var(--bg-raised);
+    border-left-color: var(--red);
+    font-weight: 500;
+}
+
+.link-emoji {
+    font-size: 16px;
+    width: 22px;
+    text-align: center;
+}
+
+/* Main */
+.main {
+    margin-left: 220px;
+    flex: 1;
+    min-height: 100vh;
+}
+
+/* Home */
+.home-hero {
+    padding: 80px 50px 50px;
+    max-width: 860px;
+}
+
+.home-hero h1 {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 16px;
+}
+
+.home-hero h1 em {
+    color: var(--red);
+    font-style: italic;
+}
+
+.home-hero .subtitle {
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 540px;
+    font-weight: 300;
+}
+
+.search-wrapper {
+    padding: 0 50px;
+    max-width: 860px;
+    margin-bottom: 36px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0 16px;
+    transition: border-color 0.2s;
+}
+
+.search-box:focus-within {
+    border-color: #252d40;
+}
+
+.search-box svg {
+    flex-shrink: 0;
+    opacity: 0.4;
+}
+
+.search-box input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 14px 0;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-box kbd {
+    font-size: 10px;
+    padding: 3px 6px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-muted);
+}
+
+.section-label {
+    padding: 0 50px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.organ-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+    padding: 0 50px 80px;
+    max-width: 860px;
+}
+
+.organ-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.organ-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--card-accent, var(--red));
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.organ-card:hover {
+    border-color: #252d40;
+    background: var(--bg-raised);
+    transform: translateY(-3px);
+}
+
+.organ-card:hover::after {
+    opacity: 1;
+}
+
+.card-emoji {
+    font-size: 28px;
+    margin-bottom: 14px;
+}
+
+.organ-card h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.card-tagline {
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 300;
+}
